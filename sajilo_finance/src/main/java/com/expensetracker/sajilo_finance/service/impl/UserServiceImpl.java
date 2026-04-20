@@ -16,8 +16,9 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User register(UserDto user_dto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'register'");
+        User user = User.builder().email(user_dto.getEmail()).name(user_dto.getName()).build();
+        userRepository.save(user);
+        return user;
     }
 
    
