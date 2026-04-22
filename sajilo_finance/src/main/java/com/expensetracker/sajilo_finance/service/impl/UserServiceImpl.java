@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User register(UserDto user_dto) {
-        User user = User.builder().email(user_dto.getEmail()).name(user_dto.getName()).build();
+        User user = User.builder().email(user_dto.getEmail()).name(user_dto.getName()).password(user_dto.getPassword()).build();
         userRepository.save(user);
         return user;
     }
