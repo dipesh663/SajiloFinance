@@ -13,5 +13,14 @@ public class AuthResponse {
 
     private String role;
     
-    private Integer userId;
+    private Long userId;
+
+    @java.lang.SuppressWarnings(value = "all")
+    @lombok.Generated
+    public static class AuthResponseBuilder {
+
+        public Object id(Long id) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+    }
 }
