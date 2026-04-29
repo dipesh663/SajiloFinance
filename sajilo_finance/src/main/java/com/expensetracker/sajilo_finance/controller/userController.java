@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.expensetracker.sajilo_finance.apiResponse.ApiResponse;
+import com.expensetracker.sajilo_finance.model.dto.AuthResponse;
+import com.expensetracker.sajilo_finance.model.dto.LoginRequest;
 import com.expensetracker.sajilo_finance.model.dto.UserDto;
 import com.expensetracker.sajilo_finance.service.UserService;
 
@@ -36,6 +38,29 @@ public class userController {
                     .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value()).build();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(apiResponse);
           }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponse> login(@RequestBody LoginRequest request) {
+           AuthResponse auth = userService.login(request);
+        try {
+          
+            ApiResponse apiResponse = ApiResponse.builder()
+                    .message("Login successful")
+                    .statusCode(HttpStatus.OK.value())
+                    .date(auth)
+                    .build();
+
+            return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
+
+        } catch (Exception e) {
+            ApiResponse apiResponse = ApiResponse.builder()
+                    .message("Login failed: " + e.getMessage())
+                    .statusCode(HttpStatus.UNAUTHORIZED.value())
+                    .build();
+
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(apiResponse);
+        }
     }
    
     
