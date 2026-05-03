@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService{
         return AuthResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
-                .role(user.getRole())
+                .role(user.getRole().name())
                 .userId(user.getId())
                 .build();
     }

@@ -1,5 +1,8 @@
 package com.expensetracker.sajilo_finance.model.dto;
 
+
+import com.expensetracker.sajilo_finance.model.entity.Role;
+
 import lombok.Data;
 
 @Data
@@ -7,6 +10,6 @@ public class UserDto {
   private Long id;
   private String name;
     private String email;
-    private String role;
+    private Role role;
     private String password;
 }
