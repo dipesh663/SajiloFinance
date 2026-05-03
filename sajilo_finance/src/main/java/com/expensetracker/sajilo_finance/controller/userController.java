@@ -26,8 +26,9 @@ public class userController {
 
     @PostMapping("/register")
     public ResponseEntity<ApiResponse> registerUser(@RequestBody UserDto userDto){
-          userService.register(userDto);
+          
           try {
+            userService.register(userDto);
               ApiResponse apiResponse = ApiResponse.builder().message("Successfully Created")
                                         .statusCode(HttpStatus.OK.value()).build();
 
@@ -42,9 +43,9 @@ public class userController {
 
     @PostMapping("/login")
     public ResponseEntity<ApiResponse> login(@RequestBody LoginRequest request) {
-           AuthResponse auth = userService.login(request);
+           
         try {
-          
+          AuthResponse auth = userService.login(request);
             ApiResponse apiResponse = ApiResponse.builder()
                     .message("Login successful")
                     .statusCode(HttpStatus.OK.value())
