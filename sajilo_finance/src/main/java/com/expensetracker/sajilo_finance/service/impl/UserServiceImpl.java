@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.expensetracker.sajilo_finance.model.dto.AuthResponse;
 import com.expensetracker.sajilo_finance.model.dto.LoginRequest;
+import com.expensetracker.sajilo_finance.model.dto.UpdateUserDto;
 import com.expensetracker.sajilo_finance.model.dto.UserDto;
 import com.expensetracker.sajilo_finance.model.entity.User;
 import com.expensetracker.sajilo_finance.repository.UserRepository;
@@ -49,6 +50,16 @@ public class UserServiceImpl implements UserService{
                 .role(user.getRole().name())
                 .userId(user.getId())
                 .build();
+    }
+
+    @Override
+    public UserDto getCurrentUser() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public UserDto updateUser(UpdateUserDto updateUserDto) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }
