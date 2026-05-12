@@ -3,7 +3,9 @@ package com.expensetracker.sajilo_finance.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.expensetracker.sajilo_finance.apiResponse.ApiResponse;
 import com.expensetracker.sajilo_finance.model.dto.AuthResponse;
 import com.expensetracker.sajilo_finance.model.dto.LoginRequest;
+import com.expensetracker.sajilo_finance.model.dto.UpdateUserDto;
 import com.expensetracker.sajilo_finance.model.dto.UserDto;
 import com.expensetracker.sajilo_finance.service.UserService;
 
@@ -62,6 +65,16 @@ public class userController {
 
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(apiResponse);
         }
+    }
+
+     @GetMapping("/me")
+    public UserDto getCurrentUser() {
+        return userService.getCurrentUser();
+    }
+
+      @PutMapping("/update")
+    public UserDto updateUser(@RequestBody UpdateUserDto dto) {
+        return userService.updateUser(dto);
     }
    
     
