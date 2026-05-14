@@ -54,12 +54,46 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserDto getCurrentUser() {
-        throw new UnsupportedOperationException("Not supported yet.");
+       User user = getLoggedInUser();
+         UserDto userDto = new UserDto();
+         userDto.setId(user.getId());
+         userDto.setEmail(user.getEmail());
+         userDto.setName(user.getName());
+         userDto.setRole(user.getRole());
+         return userDto;
     }
 
     @Override
     public UserDto updateUser(UpdateUserDto updateUserDto) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        User user = getLoggedInUser();
+
+    if (updateUserDto.getName() != null) {
+        user.setName(updateUserDto.getName());
     }
 
+    if (updateUserDto.getPhoneNumber() != null) {
+        user.setPhoneNumber(updateUserDto.getPhoneNumber());
+    }
+
+    userRepository.save(user);
+
+    UserDto userDto = new UserDto();
+    userDto.setId(user.getId());
+    userDto.setName(user.getName());
+    userDto.setEmail(user.getEmail());
+    userDto.setRole(user.getRole());
+    return userDto;
+    }
+
+
+
+    private User getLoggedInUser() {
+    String email = org.springframework.security.core.context.SecurityContextHolder
+            .getContext()
+            .getAuthentication()
+            .getName();
+
+    return userRepository.findByEmail(email)
+            .orElseThrow(() -> new RuntimeException("User not found"));
 }
+ }
